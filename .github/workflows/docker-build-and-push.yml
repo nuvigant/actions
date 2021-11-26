@@ -68,19 +68,19 @@ jobs:
         SLACK_COLOR: 'good'
         SLACK_MESSAGE: 'Trabajo finalizado con éxito.'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-    slack-notification-fail:
-      name: Notify Fail on Slack
-      if: ${{ failure() }}
-      needs: [build-container]
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
-      - name: Slack Failure Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_USERNAME: GitHubot 
-          SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-          SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
-          SLACK_COLOR: 'bad'
-          SLACK_MESSAGE: 'El trabajo falló.'
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  slack-notification-fail:
+    name: Notify Fail on Slack
+    if: ${{ failure() }}
+    needs: [build-container]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Failure Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_USERNAME: GitHubot 
+        SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
+        SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
+        SLACK_COLOR: 'bad'
+        SLACK_MESSAGE: 'El trabajo falló.'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
