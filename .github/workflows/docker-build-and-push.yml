@@ -35,4 +35,4 @@ jobs:
       with:
         push: true
         file: ${{ inputs.dockerfile }}
-        tags: nuvigantadmin/${{ inputs.image }}:${{ inputs.branch }}
+        tags: ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}
