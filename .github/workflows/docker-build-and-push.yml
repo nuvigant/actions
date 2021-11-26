@@ -32,9 +32,9 @@ jobs:
       env:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-        SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
+        SLACK_TITLE: 'Inicio'
+        SLACK_MESSAGE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }} inició."
         SLACK_COLOR: '#007acc'
-        SLACK_MESSAGE: 'Trabajo iniciando.'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   build-container:
     name: DockerHub Login and Push
@@ -64,9 +64,9 @@ jobs:
       env:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-        SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
+        SLACK_MESSAGE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }} terminó."
         SLACK_COLOR: 'good'
-        SLACK_MESSAGE: 'Trabajo finalizado con éxito.'
+        SLACK_TITLE: 'Éxito'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   slack-notification-fail:
     name: Notify Fail on Slack
@@ -80,7 +80,7 @@ jobs:
       env:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-        SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
-        SLACK_COLOR: 'bad'
-        SLACK_MESSAGE: 'El trabajo falló.'
+        SLACK_MESSAGE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }} falló."
+        SLACK_TITLE: 'Fallo'
+        SLACK_COLOR: 'danger'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
