@@ -19,7 +19,22 @@ on:
         required: true
       password:
         required: true
+      SLACK_WEBHOOK:
+        required: true
 jobs:
+  slack-notification:
+    name: Notify Start on Slack
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
+        SLACK_COLOR: '#36bb8b'
+        SLACK_MESSAGE: 'Inicio de compilación. Cambios por ${{ github.event.pusher.name }}'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
   build-container:
     name: DockerHub Login and Push
     runs-on: ubuntu-latest
