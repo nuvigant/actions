@@ -38,6 +38,7 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   build-container:
     name: DockerHub Login and Push
+    needs: [slack-notification-start]
     runs-on: ubuntu-latest
     steps: 
     - name: Docker Login
