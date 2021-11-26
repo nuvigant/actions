@@ -35,4 +35,4 @@ jobs:
       with:
         push: true
         file: ${{ inputs.dockerfile }}
-        tags: nuvigantadmin/${{ inputs.image }}:${GITHUB_REF##*/}
+        tags: nuvigantadmin/${{ inputs.image }}:${{ inputs.branch }}
