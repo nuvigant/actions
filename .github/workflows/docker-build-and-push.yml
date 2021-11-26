@@ -52,7 +52,7 @@ jobs:
         push: true
         file: ${{ inputs.dockerfile }}
         tags: ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}
-  slack-notification-start:
+  slack-notification-end:
     name: Notify Finish on Slack
     runs-on: ubuntu-latest
     steps:
