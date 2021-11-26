@@ -54,6 +54,7 @@ jobs:
         tags: ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}
   slack-notification-end:
     name: Notify Finish on Slack
+    needs: [build-container]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
