@@ -58,7 +58,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Slack Success Notification
-      if: ${{ job.status == 'success' }}
+      if: ${{ success() }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_USERNAME: GitHubot 
