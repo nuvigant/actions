@@ -1,6 +1,10 @@
 on:
   workflow_call:
     inputs:
+      branch:
+        description: 'Repository Branch'
+        required: true
+        type: string
       image:
         description: 'Image Name'
         required: true
