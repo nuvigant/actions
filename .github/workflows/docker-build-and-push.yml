@@ -22,19 +22,20 @@ on:
       SLACK_WEBHOOK:
         required: true
 jobs:
-  slack-notification:
+  slack-notification-start:
     name: Notify Start on Slack
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Slack Notification
+    - name: Slack Start Notification
       uses: rtCamp/action-slack-notify@v2
       env:
+        SLACK_USERNAME: GitHubot 
+        SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
         SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
-        SLACK_COLOR: '#36bb8b'
-        SLACK_MESSAGE: 'Inicio de compilación. Cambios por ${{ github.event.pusher.name }}'
+        SLACK_COLOR: '#007acc'
+        SLACK_MESSAGE: 'Trabajo iniciando.'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
   build-container:
     name: DockerHub Login and Push
     runs-on: ubuntu-latest
@@ -51,3 +52,28 @@ jobs:
         push: true
         file: ${{ inputs.dockerfile }}
         tags: ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}
+  slack-notification-start:
+    name: Notify Finish on Slack
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Success Notification
+      if: ${{ job.status == 'success' }}
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_USERNAME: GitHubot 
+        SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
+        SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
+        SLACK_COLOR: 'good'
+        SLACK_MESSAGE: 'Trabajo finalizado con éxito.'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    - name: Slack Failure Notification
+      if: ${{ failure() }}
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_USERNAME: GitHubot 
+        SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
+        SLACK_TITLE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ inputs.image }}:${{ inputs.branch }}"
+        SLACK_COLOR: 'bad'
+        SLACK_MESSAGE: 'El trabajo falló.'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
