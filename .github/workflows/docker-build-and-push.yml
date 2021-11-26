@@ -26,7 +26,6 @@ jobs:
     name: Notify Start on Slack
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Slack Start Notification
       uses: rtCamp/action-slack-notify@v2
       env:
@@ -47,6 +46,7 @@ jobs:
         username: ${{ secrets.username }}
         password: ${{ secrets.password }}
     - name: Docker Build and Push (${{ inputs.branch }})
+    - uses: actions/checkout@v2
       id: docker_build
       uses: docker/build-push-action@v2
       with:
@@ -59,7 +59,6 @@ jobs:
     needs: [build-container]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Slack Success Notification
       uses: rtCamp/action-slack-notify@v2
       env:
@@ -75,7 +74,6 @@ jobs:
     needs: [build-container]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Slack Failure Notification
       uses: rtCamp/action-slack-notify@v2
       env:
