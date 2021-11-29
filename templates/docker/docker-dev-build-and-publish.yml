@@ -1,0 +1,19 @@
+name: Docker (dev) - Build & Publish
+on:
+  workflow_dispatch:
+  push:
+    branches:
+     - dev
+jobs:
+  build:
+    uses: nuvigant/actions/.github/workflows/docker-build-and-push.yml@master
+    with:
+      branch: dev
+      image: # IMÁGEN
+      dockerfile: # UBICACIÓN DE DOCKERFILE (default="Dockerfile")
+    secrets:
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+
