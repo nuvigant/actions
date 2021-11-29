@@ -3,17 +3,13 @@ on:
   workflow_dispatch:
   push:
     branches:
-     - dev
+     - master
 jobs:
   build:
     uses: nuvigant/actions/.github/workflows/docker-build-and-push.yml@master
     with:
-      branch: dev
-      image: # IMÁGEN
-      dockerfile: # UBICACIÓN DE DOCKERFILE (default="Dockerfile")
+      tag: dev
     secrets:
       username: ${{ secrets.DOCKER_USERNAME }}
       password: ${{ secrets.DOCKER_PASSWORD }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
-
