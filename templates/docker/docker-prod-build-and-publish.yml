@@ -8,9 +8,7 @@ jobs:
   build:
     uses: nuvigant/actions/.github/workflows/docker-build-and-push.yml@master
     with:
-      branch: prod
-      image: # IMÁGEN
-      dockerfile: # UBICACIÓN DE DOCKERFILE (default="Dockerfile")
+      tag: prod
     secrets:
       username: ${{ secrets.DOCKER_USERNAME }}
       password: ${{ secrets.DOCKER_PASSWORD }}
