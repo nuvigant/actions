@@ -29,7 +29,7 @@ jobs:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
         SLACK_TITLE: 'Inicio'
-        SLACK_MESSAGE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}:${{ inputs.tag }} inició."
+        SLACK_MESSAGE: "INICIÓ: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}:${{ inputs.tag }}."
         SLACK_COLOR: '#007acc'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   build-container:
@@ -61,7 +61,7 @@ jobs:
       env:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-        SLACK_MESSAGE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}:${{ inputs.tag }} terminó."
+        SLACK_MESSAGE: "ÉXITO: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}:${{ inputs.tag }}."
         SLACK_COLOR: 'good'
         SLACK_TITLE: 'Éxito'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -77,7 +77,7 @@ jobs:
       env:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-        SLACK_MESSAGE: "${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}:${{ inputs.tag }} falló."
+        SLACK_MESSAGE: "¡¡FALLÓ!!: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}:${{ inputs.tag }}."
         SLACK_TITLE: 'Fallo'
         SLACK_COLOR: 'danger'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
