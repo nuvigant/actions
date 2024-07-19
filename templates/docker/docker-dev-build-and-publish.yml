@@ -10,6 +10,6 @@ jobs:
     with:
       tag: dev
     secrets:
-      username: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PAT: ${{ secrets.DOCKER_PAT }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
