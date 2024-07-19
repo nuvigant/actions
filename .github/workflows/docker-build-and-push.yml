@@ -13,7 +13,7 @@ on:
     secrets:
       username: 
         required: true
-      password:
+      DOCKER_PAT:
         required: true
       SLACK_WEBHOOK:
         required: true
