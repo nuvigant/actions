@@ -48,7 +48,7 @@ jobs:
       with:
         push: true
         file: ${{ inputs.dockerfile }}
-        tags: ${{ secrets.username }}/${{ github.event.repository.name }}:${{ inputs.tag }}
+        tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ inputs.tag }}
   slack-notification-end:
     name: Notify Finish on Slack
     if: ${{ success() }}
@@ -61,7 +61,7 @@ jobs:
       env:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-        SLACK_MESSAGE: "ÉXITO ${{ inputs.tag }}: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}."
+        SLACK_MESSAGE: "ÉXITO ${{ inputs.tag }}: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}."
         SLACK_COLOR: 'good'
         SLACK_TITLE: 'Éxito'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -77,7 +77,7 @@ jobs:
       env:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
-        SLACK_MESSAGE: "FALLÓ ${{ inputs.tag }}: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}."
+        SLACK_MESSAGE: "FALLÓ ${{ inputs.tag }}: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}."
         SLACK_TITLE: 'Fallo'
         SLACK_COLOR: 'danger'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
