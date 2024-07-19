@@ -29,7 +29,7 @@ jobs:
         SLACK_USERNAME: GitHubot 
         SLACK_ICON: "https://img.icons8.com/material-outlined/128/000000/github.png"
         SLACK_TITLE: 'Inicio'
-        SLACK_MESSAGE: "INICIÓ ${{ inputs.tag }}: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.username }}/${{ github.event.repository.name }}."
+        SLACK_MESSAGE: "INICIÓ ${{ inputs.tag }}: ${{ github.event.repository.name }} - #${{ github.run_number }} ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}."
         SLACK_COLOR: '#007acc'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   build-container:
