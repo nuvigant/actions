@@ -10,6 +10,11 @@ on:
         default: 'Dockerfile'
         required: false
         type: string
+      # 1. NEW INPUT ADDED HERE
+      build-args:
+        description: 'List of build-time variables'
+        required: false
+        type: string
     secrets:
       DOCKER_USERNAME: 
         required: true
@@ -49,6 +54,8 @@ jobs:
         push: true
         file: ${{ inputs.dockerfile }}
         tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ inputs.tag }}
+        # 2. PASS THE ARGUMENT HERE
+        build-args: ${{ inputs.build-args }}
   slack-notification-end:
     name: Notify Finish on Slack
     if: ${{ success() }}
